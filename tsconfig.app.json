@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["src/client/e.d.ts", "src/client/**/*", "src/**/*.vue", "src/client/main.ts"],
+  "include": ["src/client/e.d.ts", "src/client/**/*", "src/**/*.vue", "src/client/main.ts", "auto-imports.d.ts", "components.d.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,

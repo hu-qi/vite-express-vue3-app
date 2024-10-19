@@ -1,32 +1,40 @@
 <script setup lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
-import axios from 'axios'
 import { RouterLink, RouterView } from 'vue-router'
+import BaseService from './services/BaseService';
 import HelloWorld from './components/HelloWorld.vue'
-const message = ref<string>('');
-
-// 在组件挂载时调用 API
-onMounted(async () => {
-  try {
-    const response = await axios.get('/api/hello');
-    message.value = response.data.message; // 取得后端返回的 message
-  } catch (error) {
-    console.error('Error fetching API:', error);
-  }
-});
-
+import { onMounted } from 'vue';
+const message = ref<string>('Hello, GaussDB!');
+onMounted(() => {
+  BaseService.getMsg().then((res) => {
+    message.value = res.data?.message;
+  });
+})
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <d-row align="middle" justify="center">
+      <d-col :span="10" class="flex-center-all">
+        <img
+          alt="Vue logo"
+          src="@/assets/sequelize.svg"
+          width="100"
+          height="100"
+        />
+      </d-col>
+      <d-col :span="4" class="flex-center-all">
+        <i class="icon icon-add"></i
+      ></d-col>
+      <d-col :span="10" class="flex-center-all">
+        <img alt="Vue logo" src="@/assets/gauss.png" width="100" height="100" />
+      </d-col>
+    </d-row>
 
     <div class="wrapper">
       <HelloWorld :msg="message" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/add">Add</RouterLink>
       </nav>
     </div>
   </header>
@@ -42,7 +50,7 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  padding: 1rem;
 }
 
 nav {
@@ -85,6 +93,7 @@ nav a:first-of-type {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
+    padding-left: 1rem;
   }
 
   nav {
@@ -94,6 +103,11 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+
+  main {
+    height: 100vh;
+    border-left: 1px solid var(--color-border);
   }
 }
 </style>
