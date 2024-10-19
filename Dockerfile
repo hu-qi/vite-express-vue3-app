@@ -13,9 +13,6 @@ RUN npm install pm2 -g --verbose --unsafe-perm --registry=https://repo.huaweiclo
 # 安装项目依赖
 RUN npm install --verbose --unsafe-perm --registry=https://repo.huaweicloud.com/repository/npm/
 
-# 构建
-RUN npm run build
-
 # 复制项目文件
 COPY . .
 
@@ -23,6 +20,7 @@ COPY . .
 EXPOSE 3000
 
 # 启动应用程序
-CMD ["pm2-runtime", "npm", "--", "run start:server"]
+CMD ["pm2-runtime", "npm", "--", "start"]
+
 
 
