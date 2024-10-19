@@ -20,6 +20,6 @@ COPY . .
 EXPOSE 3000
 
 # 启动应用程序
-CMD ["pm2-runtime", "npm", "--", "start:prod"]
+CMD ["pm2-runtime", "npm", "--", "run start:prod"]
 
 
